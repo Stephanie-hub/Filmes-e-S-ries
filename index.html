@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Minha Estante</title>
 
   <style>
@@ -13,158 +14,173 @@
       padding: 0;
     }
 
-    :root {
-      --bg: #090a0d;
-      --card: #15171c;
-      --text: #f5f5f5;
-      --muted: #999da7;
-      --accent: #b88a4a;
-      --accent-light: #d9b77a;
-    }
-
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: #090a0d;
+      color: #fff;
       font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
     }
 
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
     button {
-      font-family: inherit;
       cursor: pointer;
     }
 
-    /* ==============================
-       CABEÇALHO
-    ============================== */
+    /* =========================
+       TOPO
+    ========================= */
 
     header {
-      height: 75px;
+      height: 72px;
+      padding: 0 6%;
       display: flex;
       align-items: center;
-      padding: 0 5%;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      background: rgba(9,10,13,.96);
+      justify-content: space-between;
+      border-bottom: 1px solid #1d1f24;
+      background: rgba(9, 10, 13, 0.96);
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
+      backdrop-filter: blur(12px);
     }
 
     .logo {
       font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 3px;
+      font-weight: 800;
+      letter-spacing: 2px;
     }
 
     .logo span {
-      color: var(--accent-light);
+      color: #c9a45c;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
     .search {
-      margin-left: auto;
-      width: 240px;
+      width: 250px;
       background: #15171c;
-      border: 1px solid #292c32;
-      border-radius: 8px;
-      padding: 10px 13px;
+      border: 1px solid #292c33;
       color: white;
+      padding: 11px 15px;
+      border-radius: 8px;
       outline: none;
     }
 
-    /* ==============================
+    .search:focus {
+      border-color: #c9a45c;
+    }
+
+    .add-button {
+      background: #c9a45c;
+      color: #111;
+      border: none;
+      padding: 11px 17px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .add-button:hover {
+      background: #e0bd75;
+      transform: translateY(-1px);
+    }
+
+    /* =========================
        HERO
-    ============================== */
+    ========================= */
 
     .hero {
-      min-height: 380px;
-      margin: 25px 5% 0;
-      border-radius: 15px;
+      min-height: 330px;
+      padding: 70px 6%;
       display: flex;
       align-items: center;
-      padding: 55px;
       background:
-        linear-gradient(
-          90deg,
-          rgba(9,10,13,.98),
-          rgba(9,10,13,.78),
-          rgba(9,10,13,.2)
-        ),
-        url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80")
+        linear-gradient(90deg, #090a0d 0%, rgba(9,10,13,.88) 45%, rgba(9,10,13,.25)),
+        linear-gradient(0deg, #090a0d 0%, transparent 50%),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80")
         center/cover;
     }
 
     .hero-content {
-      max-width: 580px;
+      max-width: 650px;
     }
 
-    .small-title {
-      color: var(--accent-light);
-      font-size: 12px;
-      letter-spacing: 3px;
-      margin-bottom: 15px;
+    .hero small {
+      color: #c9a45c;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .hero h1 {
       font-family: Georgia, serif;
-      font-size: 52px;
-      line-height: 1.05;
-      margin-bottom: 15px;
+      font-size: clamp(38px, 6vw, 70px);
+      margin: 12px 0;
     }
 
     .hero p {
-      color: #bbbfc7;
-      line-height: 1.6;
-      max-width: 500px;
+      color: #b7bac1;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 560px;
     }
 
-    /* ==============================
-       CATÁLOGO
-    ============================== */
+    /* =========================
+       CONTEÚDO
+    ========================= */
 
-    .catalog-section {
-      padding: 45px 5%;
+    main {
+      padding: 35px 6% 70px;
     }
 
     .section-title {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
     }
 
     .section-title h2 {
-      font-family: Georgia, serif;
-      font-size: 28px;
+      font-size: 24px;
     }
 
-    .section-title span {
-      color: var(--muted);
-      font-size: 13px;
+    .count {
+      color: #8f939d;
+      font-size: 14px;
     }
 
     .catalog {
       display: grid;
-      grid-template-columns:
-        repeat(auto-fill, minmax(180px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 25px;
     }
 
-    /* ==============================
-       CARD
-    ============================== */
+    /* =========================
+       CARDS
+    ========================= */
 
     .card {
-      background: var(--card);
+      background: #13151a;
+      border: 1px solid #202329;
       border-radius: 10px;
       overflow: hidden;
-      border: 1px solid transparent;
-      transition: .25s;
+      transition: 0.25s;
       position: relative;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      border-color: #383b42;
+      border-color: #4a4030;
+      box-shadow: 0 15px 35px rgba(0,0,0,.35);
     }
 
     .poster {
@@ -172,235 +188,350 @@
       aspect-ratio: 2 / 3;
       object-fit: cover;
       display: block;
+      background: #1c1e23;
+    }
+
+    .poster-placeholder {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #181a20, #252831);
+      color: #777c86;
+      font-size: 42px;
     }
 
     .card-info {
-      padding: 13px;
+      padding: 14px;
     }
 
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.4;
+    .card-info h3 {
+      font-size: 16px;
+      line-height: 1.35;
+      margin-bottom: 7px;
     }
 
-    .card-subtitle {
-      color: #777c86;
-      font-size: 11px;
-      margin-top: 6px;
+    .year {
+      color: #8f939d;
+      font-size: 13px;
     }
 
-    .play-icon {
-      position: absolute;
-      left: 50%;
-      top: 42%;
-      transform: translate(-50%, -50%);
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .watch-button {
+      flex: 1;
       border: none;
-      background: rgba(184,138,74,.95);
+      background: #c9a45c;
+      color: #111;
+      padding: 9px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .more-button {
+      width: 38px;
+      border: 1px solid #30333a;
+      background: #1b1d22;
       color: white;
-      font-size: 19px;
+      border-radius: 6px;
+    }
+
+    .delete-button {
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      width: 31px;
+      height: 31px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0,0,0,.75);
+      color: #fff;
       opacity: 0;
       transition: .2s;
     }
 
-    .card:hover .play-icon {
+    .card:hover .delete-button {
       opacity: 1;
     }
 
-    /* ==============================
-       MODAL
-    ============================== */
+    .delete-button:hover {
+      background: #a83232;
+    }
 
-    .modal-bg {
+    /* =========================
+       MODAIS
+    ========================= */
+
+    .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.88);
+      background: rgba(0,0,0,.78);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 100;
       padding: 20px;
+      z-index: 500;
+      backdrop-filter: blur(5px);
     }
 
-    .modal-bg.active {
+    .overlay.active {
       display: flex;
     }
 
     .modal {
-      width: min(850px, 100%);
+      width: 100%;
+      max-width: 550px;
+      background: #15171c;
+      border: 1px solid #292c33;
+      border-radius: 14px;
+      padding: 28px;
       max-height: 90vh;
       overflow-y: auto;
-      background: #15171c;
-      border-radius: 14px;
+    }
+
+    .modal-header {
       display: flex;
-      position: relative;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
     }
 
-    .modal-poster {
-      width: 290px;
-      object-fit: cover;
-    }
-
-    .modal-info {
-      padding: 35px;
-      flex: 1;
-    }
-
-    .modal-info h2 {
+    .modal-header h2 {
       font-family: Georgia, serif;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .modal-info p {
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    .watch-button {
-      background: var(--accent);
-      border: none;
-      color: white;
-      border-radius: 7px;
-      padding: 13px 22px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .watch-button:hover {
-      background: var(--accent-light);
-      color: #111;
     }
 
     .close {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      width: 38px;
-      height: 38px;
+      width: 35px;
+      height: 35px;
       border: none;
       border-radius: 50%;
-      background: rgba(0,0,0,.65);
+      background: #24272d;
       color: white;
-      font-size: 22px;
-      z-index: 2;
+      font-size: 20px;
     }
 
-    /* ==============================
-       PLAYER
-    ============================== */
-
-    .player-bg {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      z-index: 200;
-      display: none;
-      align-items: center;
-      justify-content: center;
+    .close:hover {
+      background: #353941;
     }
 
-    .player-bg.active {
-      display: flex;
+    .form-group {
+      margin-bottom: 18px;
     }
 
-    .player-container {
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      color: #bfc2c9;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea {
       width: 100%;
-      height: 100%;
+      background: #0d0f13;
+      color: white;
+      border: 1px solid #30333a;
+      border-radius: 7px;
+      padding: 12px;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #c9a45c;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .save-button {
+      width: 100%;
+      background: #c9a45c;
+      color: #111;
+      border: none;
+      padding: 13px;
+      border-radius: 7px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    /* =========================
+       DETALHES
+    ========================= */
+
+    .details {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 30px;
+      gap: 25px;
+    }
+
+    .details-poster {
+      width: 170px;
+      height: 255px;
+      object-fit: cover;
+      border-radius: 7px;
+      background: #202229;
+    }
+
+    .details-info {
+      flex: 1;
+    }
+
+    .details-info h2 {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      margin-bottom: 7px;
+    }
+
+    .details-year {
+      color: #c9a45c;
+      margin-bottom: 20px;
+    }
+
+    .details-description {
+      color: #aaaeb7;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .play-large {
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      background: #c9a45c;
+      border: none;
+      border-radius: 7px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    /* =========================
+       PLAYER
+    ========================= */
+
+    .player-modal {
+      width: 100%;
+      max-width: 1100px;
+      background: #050506;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .player-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: #111216;
     }
 
     .player-title {
-      margin-bottom: 12px;
-      color: #ddd;
-      font-size: 15px;
+      font-weight: bold;
     }
 
     video {
       width: 100%;
-      max-height: 82vh;
+      max-height: 75vh;
+      display: block;
       background: #000;
     }
 
-    .player-close {
-      position: absolute;
-      right: 25px;
-      top: 20px;
-      width: 42px;
-      height: 42px;
-      border: none;
-      border-radius: 50%;
-      background: #222;
-      color: white;
-      font-size: 23px;
-      z-index: 3;
-    }
-
-    /* ==============================
+    /* =========================
        VAZIO
-    ============================== */
+    ========================= */
 
     .empty {
       text-align: center;
-      padding: 60px;
-      color: #777;
+      padding: 80px 20px;
+      color: #777c86;
+      grid-column: 1 / -1;
     }
 
-    /* ==============================
+    .empty-icon {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    .empty h3 {
+      color: #d5d7dc;
+      margin-bottom: 8px;
+    }
+
+    /* =========================
        RESPONSIVO
-    ============================== */
+    ========================= */
 
     @media (max-width: 700px) {
 
       header {
-        padding: 0 4%;
+        height: auto;
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 13px;
+      }
+
+      .header-right {
+        width: 100%;
       }
 
       .search {
-        width: 150px;
+        flex: 1;
+        width: auto;
       }
 
       .hero {
-        margin: 15px 3%;
-        min-height: 330px;
-        padding: 30px;
+        min-height: 280px;
+        padding: 50px 5%;
       }
 
       .hero h1 {
-        font-size: 37px;
+        font-size: 42px;
       }
 
-      .catalog-section {
-        padding: 30px 4%;
+      main {
+        padding: 30px 5% 60px;
       }
 
       .catalog {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+      }
+
+      .card-info {
+        padding: 11px;
+      }
+
+      .card-info h3 {
+        font-size: 14px;
+      }
+
+      .delete-button {
+        opacity: 1;
+      }
+
+      .details {
+        flex-direction: column;
+      }
+
+      .details-poster {
+        width: 140px;
+        height: 210px;
+        margin: auto;
+      }
+
+      .details-info h2 {
+        font-size: 23px;
       }
 
       .modal {
-        display: block;
-      }
-
-      .modal-poster {
-        width: 100%;
-        height: 280px;
-      }
-
-      .modal-info {
-        padding: 25px;
-      }
-
-      .modal-info h2 {
-        font-size: 25px;
+        padding: 20px;
       }
     }
   </style>
@@ -408,9 +539,9 @@
 
 <body>
 
-  <!-- =====================================
+  <!-- =========================
        CABEÇALHO
-  ====================================== -->
+  ========================== -->
 
   <header>
 
@@ -418,36 +549,42 @@
       MINHA <span>ESTANTE</span>
     </div>
 
-    <input
-      class="search"
-      id="search"
-      type="text"
-      placeholder="Pesquisar..."
-      oninput="renderCatalog()"
-    >
+    <div class="header-right">
+
+      <input
+        id="searchInput"
+        class="search"
+        type="text"
+        placeholder="Pesquisar filmes..."
+      >
+
+      <button
+        class="add-button"
+        onclick="openAddModal()"
+      >
+        + Adicionar
+      </button>
+
+    </div>
 
   </header>
 
 
-  <!-- =====================================
-       DESTAQUE
-  ====================================== -->
+  <!-- =========================
+       HERO
+  ========================== -->
 
   <section class="hero">
 
     <div class="hero-content">
 
-      <div class="small-title">
-        MINHA COLEÇÃO
-      </div>
+      <small>Minha biblioteca</small>
 
-      <h1>
-        Harry Potter
-      </h1>
+      <h1>Seu cinema,<br>do seu jeito.</h1>
 
       <p>
-        Minha coleção pessoal de filmes.
-        Escolha um título para abrir e assistir.
+        Guarde seus filmes em um só lugar, organize sua biblioteca
+        e assista aos seus vídeos diretamente pelo site.
       </p>
 
     </div>
@@ -455,108 +592,248 @@
   </section>
 
 
-  <!-- =====================================
+  <!-- =========================
        CATÁLOGO
-  ====================================== -->
+  ========================== -->
 
-  <section class="catalog-section">
+  <main>
 
     <div class="section-title">
 
-      <h2>
-        Harry Potter
-      </h2>
+      <h2>Minha biblioteca</h2>
 
-      <span id="count"></span>
+      <span
+        id="count"
+        class="count"
+      >
+        0 filmes
+      </span>
 
     </div>
 
     <div
-      class="catalog"
       id="catalog"
+      class="catalog"
     ></div>
 
-    <div
-      class="empty"
-      id="empty"
-      style="display:none"
-    >
-      Nenhum filme encontrado.
-    </div>
-
-  </section>
+  </main>
 
 
-  <!-- =====================================
-       MODAL
-  ====================================== -->
+  <!-- =========================
+       MODAL ADICIONAR
+  ========================== -->
 
   <div
-    class="modal-bg"
-    id="modal"
+    id="addOverlay"
+    class="overlay"
   >
 
     <div class="modal">
 
-      <button
-        class="close"
-        onclick="closeModal()"
-      >
-        ×
-      </button>
+      <div class="modal-header">
 
-      <img
-        class="modal-poster"
-        id="modalPoster"
-        src=""
-        alt=""
-      >
-
-      <div class="modal-info">
-
-        <h2 id="modalTitle"></h2>
-
-        <p id="modalDescription"></p>
+        <h2>Adicionar filme</h2>
 
         <button
-          class="watch-button"
-          id="watchButton"
+          class="close"
+          onclick="closeAddModal()"
         >
-          ▶ Assistir
+          ×
         </button>
 
       </div>
+
+
+      <form id="movieForm">
+
+        <div class="form-group">
+
+          <label for="movieTitle">
+            Nome do filme
+          </label>
+
+          <input
+            id="movieTitle"
+            type="text"
+            placeholder="Ex.: Harry Potter e a Pedra Filosofal"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="movieYear">
+            Ano
+          </label>
+
+          <input
+            id="movieYear"
+            type="number"
+            placeholder="Ex.: 2001"
+            min="1800"
+            max="2100"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="moviePoster">
+            Link da capa
+          </label>
+
+          <input
+            id="moviePoster"
+            type="url"
+            placeholder="https://..."
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="movieVideo">
+            Link do vídeo
+          </label>
+
+          <input
+            id="movieVideo"
+            type="url"
+            placeholder="Cole aqui o link direto do vídeo"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="movieDescription">
+            Descrição
+          </label>
+
+          <textarea
+            id="movieDescription"
+            placeholder="Escreva uma descrição do filme..."
+          ></textarea>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="save-button"
+        >
+          ADICIONAR À BIBLIOTECA
+        </button>
+
+      </form>
 
     </div>
 
   </div>
 
 
-  <!-- =====================================
-       PLAYER
-  ====================================== -->
+  <!-- =========================
+       MODAL DETALHES
+  ========================== -->
 
   <div
-    class="player-bg"
-    id="player"
+    id="detailsOverlay"
+    class="overlay"
   >
 
-    <button
-      class="player-close"
-      onclick="closePlayer()"
-    >
-      ×
-    </button>
+    <div class="modal">
 
-    <div class="player-container">
+      <div class="modal-header">
 
-      <div
-        class="player-title"
-        id="playerTitle"
-      ></div>
+        <h2>Detalhes</h2>
+
+        <button
+          class="close"
+          onclick="closeDetails()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="details">
+
+        <img
+          id="detailsPoster"
+          class="details-poster"
+          src=""
+          alt=""
+        >
+
+        <div class="details-info">
+
+          <h2 id="detailsTitle"></h2>
+
+          <div
+            id="detailsYear"
+            class="details-year"
+          ></div>
+
+          <div
+            id="detailsDescription"
+            class="details-description"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        id="detailsPlay"
+        class="play-large"
+      >
+        ▶ ASSISTIR
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       PLAYER
+  ========================== -->
+
+  <div
+    id="playerOverlay"
+    class="overlay"
+  >
+
+    <div class="player-modal">
+
+      <div class="player-top">
+
+        <span
+          id="playerTitle"
+          class="player-title"
+        >
+          Filme
+        </span>
+
+        <button
+          class="close"
+          onclick="closePlayer()"
+        >
+          ×
+        </button>
+
+      </div>
 
       <video
-        id="video"
+        id="videoPlayer"
         controls
         playsinline
       ></video>
@@ -568,289 +845,176 @@
 
   <script>
 
-    /*
-    ==========================================================
-    FILMES
+    /* ==========================================
+       BANCO DE FILMES
+    ========================================== */
 
-    Aqui ficam os filmes da sua coleção.
+    const STORAGE_KEY = "minha_estante_filmes";
 
-    Para adicionar outro filme, copie um bloco e altere:
-    - title
-    - year
-    - poster
-    - description
-    - video
-
-    Use somente URLs de vídeo que você tenha autorização
-    para reproduzir.
-    ==========================================================
-    */
-
-    const filmes = [
-
-      {
-        title:
-          "Harry Potter e a Pedra Filosofal",
-
-        year:
-          "2001",
-
-        poster:
-          "https://image.tmdb.org/t/p/w500/l1T6Y3mY9Z8N4M9Q0F1A0P8Q8rH.jpg",
-
-        description:
-          "Harry Potter descobre que é um bruxo e começa seus estudos em Hogwarts.",
-
-        video:
-          "COLE_AQUI_O_LINK_AUTORIZADO"
-      },
+    let filmes = JSON.parse(
+      localStorage.getItem(STORAGE_KEY) || "[]"
+    );
 
 
-      {
-        title:
-          "Harry Potter e a Câmara Secreta",
-
-        year:
-          "2002",
-
-        poster:
-          "https://image.tmdb.org/t/p/w500/7xXJ15VEf7G9Gd7mYJf1A9pQW8M.jpg",
-
-        description:
-          "Harry retorna a Hogwarts e descobre que uma antiga ameaça foi libertada.",
-
-        video:
-          "COLE_AQUI_O_LINK_AUTORIZADO"
-      },
-
-
-      {
-        title:
-          "Harry Potter e o Prisioneiro de Azkaban",
-
-        year:
-          "2004",
-
-        poster:
-          "https://image.tmdb.org/t/p/w500/aWxwnYoe8p2d2uE6Q3J7qJ1R8cL.jpg",
-
-        description:
-          "Harry conhece mais sobre o passado de sua família enquanto Sirius Black escapa de Azkaban.",
-
-        video:
-          "COLE_AQUI_O_LINK_AUTORIZADO"
-      },
-
-
-      {
-        title:
-          "Harry Potter e o Cálice de Fogo",
-
-        year:
-          "2005",
-
-        poster:
-          "https://image.tmdb.org/t/p/w500/fECBtHlr0RB2H5J4j3sY1kK8w5A.jpg",
-
-        description:
-          "Harry é inesperadamente escolhido para participar do Torneio Tribruxo.",
-
-        video:
-          "COLE_AQUI_O_LINK_AUTORIZADO"
-      },
-
-
-      {
-        title:
-          "Harry Potter e a Ordem da Fênix",
-
-        year:
-          "2007",
-
-        poster:
-          "https://image.tmdb.org/t/p/w500/5aOyriWkPec0zUDwY5Y4Q8Q1b2K.jpg",
-
-        description:
-          "Harry enfrenta uma nova realidade em Hogwarts enquanto o mundo bruxo se prepara para uma ameaça crescente.",
-
-        video:
-          "COLE_AQUI_O_LINK_AUTORIZADO"
-      },
-
-
-      {
-        title:
-          "Harry Potter e o Enigma do Príncipe",
-
-        year:
-          "2009",
-
-        poster:
-          "https://image.tmdb.org/t/p/w500/z7uo8BjKXf5GQkJ8J1D4Y5K6Q9A.jpg",
-
-        description:
-          "Harry descobre informações importantes sobre o passado de Voldemort.",
-
-        video:
-          "COLE_AQUI_O_LINK_AUTORIZADO"
-      },
-
-
-      {
-        title:
-          "Harry Potter e as Relíquias da Morte — Parte 1",
-
-        year:
-          "2010",
-
-        poster:
-          "https://image.tmdb.org/t/p/w500/iGoXIpQb7Pot00EEdwpwPajheZ5.jpg",
-
-        description:
-          "Harry, Ron e Hermione deixam Hogwarts para procurar as Horcruxes.",
-
-        video:
-          "COLE_AQUI_O_LINK_AUTORIZADO"
-      },
-
-
-      {
-        title:
-          "Harry Potter e as Relíquias da Morte — Parte 2",
-
-        year:
-          "2011",
-
-        poster:
-          "https://image.tmdb.org/t/p/w500/c54HpQmuwXjHq2C9wmoacY9bq6P.jpg",
-
-        description:
-          "A batalha final entre Harry Potter e Voldemort chega ao seu desfecho.",
-
-        video:
-          "COLE_AQUI_O_LINK_AUTORIZADO"
-      }
-
-    ];
-
-
-    /* ======================================================
+    /* ==========================================
        ELEMENTOS
-    ====================================================== */
+    ========================================== */
 
-    const catalog =
-      document.getElementById("catalog");
-
-    const search =
-      document.getElementById("search");
-
-    const count =
-      document.getElementById("count");
-
-    const empty =
-      document.getElementById("empty");
-
-    const modal =
-      document.getElementById("modal");
-
-    const modalPoster =
-      document.getElementById("modalPoster");
-
-    const modalTitle =
-      document.getElementById("modalTitle");
-
-    const modalDescription =
-      document.getElementById("modalDescription");
-
-    const watchButton =
-      document.getElementById("watchButton");
-
-    const player =
-      document.getElementById("player");
-
-    const video =
-      document.getElementById("video");
-
-    const playerTitle =
-      document.getElementById("playerTitle");
+    const catalog = document.getElementById("catalog");
+    const count = document.getElementById("count");
+    const searchInput = document.getElementById("searchInput");
 
 
-    let filmeSelecionado = null;
+    /* ==========================================
+       SALVAR
+    ========================================== */
+
+    function salvarFilmes() {
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(filmes)
+      );
+
+    }
 
 
-    /* ======================================================
-       MOSTRAR CATÁLOGO
-    ====================================================== */
+    /* ==========================================
+       RENDERIZAR CATÁLOGO
+    ========================================== */
 
     function renderCatalog() {
 
-      const termo =
-        search.value
+      const busca = searchInput.value
+        .toLowerCase()
+        .trim();
+
+
+      const resultados = filmes.filter(filme => {
+
+        return filme.title
           .toLowerCase()
-          .trim();
+          .includes(busca);
+
+      });
 
 
-      const resultados =
-        filmes.filter(filme =>
-          filme.title
-            .toLowerCase()
-            .includes(termo)
-        );
+      count.textContent =
+        resultados.length +
+        (resultados.length === 1 ? " filme" : " filmes");
 
 
       catalog.innerHTML = "";
 
 
-      count.textContent =
-        resultados.length + " filmes";
-
-
       if (resultados.length === 0) {
 
-        empty.style.display = "block";
+        catalog.innerHTML = `
+
+          <div class="empty">
+
+            <div class="empty-icon">
+              🎬
+            </div>
+
+            <h3>
+              Sua biblioteca está vazia
+            </h3>
+
+            <p>
+              Clique em "+ Adicionar" para colocar seu primeiro filme.
+            </p>
+
+          </div>
+
+        `;
 
         return;
 
       }
 
 
-      empty.style.display = "none";
+      resultados.forEach(filme => {
 
+        const originalIndex = filmes.indexOf(filme);
 
-      resultados.forEach((filme, index) => {
-
-        const card =
-          document.createElement("div");
+        const card = document.createElement("div");
 
         card.className = "card";
 
 
+        let posterHTML = "";
+
+        if (filme.poster) {
+
+          posterHTML = `
+            <img
+              class="poster"
+              src="${escapeHTML(filme.poster)}"
+              alt="${escapeHTML(filme.title)}"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+
+            <div
+              class="poster-placeholder"
+              style="display:none;"
+            >
+              🎬
+            </div>
+          `;
+
+        } else {
+
+          posterHTML = `
+            <div class="poster-placeholder">
+              🎬
+            </div>
+          `;
+
+        }
+
+
         card.innerHTML = `
 
-          <img
-            class="poster"
-            src="${filme.poster}"
-            alt="${filme.title}"
-          >
+          ${posterHTML}
 
           <button
-            class="play-icon"
-            onclick="openMovie(${index})"
+            class="delete-button"
+            title="Excluir"
+            onclick="event.stopPropagation(); deleteMovie(${originalIndex})"
           >
-            ▶
+            ×
           </button>
 
-          <div
-            class="card-info"
-            onclick="openMovie(${index})"
-          >
+          <div class="card-info">
 
-            <div class="card-title">
-              ${filme.title}
-            </div>
+            <h3>
+              ${escapeHTML(filme.title)}
+            </h3>
 
-            <div class="card-subtitle">
-              ${filme.year}
+            ${
+              filme.year
+                ? `<div class="year">${escapeHTML(filme.year)}</div>`
+                : ""
+            }
+
+            <div class="card-actions">
+
+              <button
+                class="watch-button"
+                onclick="event.stopPropagation(); playMovie(${originalIndex})"
+              >
+                ▶ Assistir
+              </button>
+
+              <button
+                class="more-button"
+                onclick="event.stopPropagation(); openDetails(${originalIndex})"
+                title="Detalhes"
+              >
+                ⋯
+              </button>
+
             </div>
 
           </div>
@@ -858,25 +1022,11 @@
         `;
 
 
-        /*
-          O card inteiro também abre o filme.
-        */
+        card.addEventListener("click", () => {
 
-        card.onclick = function(event) {
+          openDetails(originalIndex);
 
-          if (
-            !event.target.classList.contains(
-              "play-icon"
-            )
-          ) {
-
-            openMovie(
-              filmes.indexOf(filme)
-            );
-
-          }
-
-        };
+        });
 
 
         catalog.appendChild(card);
@@ -886,118 +1036,297 @@
     }
 
 
-    /* ======================================================
-       ABRIR FILME
-    ====================================================== */
+    /* ==========================================
+       ADICIONAR FILME
+    ========================================== */
 
-    function openMovie(index) {
+    function openAddModal() {
 
-      filmeSelecionado =
-        filmes[index];
+      document
+        .getElementById("addOverlay")
+        .classList.add("active");
+
+      document
+        .getElementById("movieTitle")
+        .focus();
+
+    }
 
 
-      if (!filmeSelecionado) {
-        return;
+    function closeAddModal() {
+
+      document
+        .getElementById("addOverlay")
+        .classList.remove("active");
+
+    }
+
+
+    document
+      .getElementById("movieForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const title =
+          document.getElementById("movieTitle").value.trim();
+
+        const year =
+          document.getElementById("movieYear").value.trim();
+
+        const poster =
+          document.getElementById("moviePoster").value.trim();
+
+        const video =
+          document.getElementById("movieVideo").value.trim();
+
+        const description =
+          document.getElementById("movieDescription").value.trim();
+
+
+        if (!title || !video) {
+
+          alert("Preencha pelo menos o nome e o link do vídeo.");
+
+          return;
+
+        }
+
+
+        filmes.push({
+
+          id: Date.now(),
+
+          title: title,
+
+          year: year,
+
+          poster: poster,
+
+          video: video,
+
+          description: description
+
+        });
+
+
+        salvarFilmes();
+
+        renderCatalog();
+
+        this.reset();
+
+        closeAddModal();
+
+      });
+
+
+    /* ==========================================
+       DETALHES
+    ========================================== */
+
+    function openDetails(index) {
+
+      const filme = filmes[index];
+
+      if (!filme) return;
+
+
+      const poster =
+        document.getElementById("detailsPoster");
+
+
+      if (filme.poster) {
+
+        poster.src = filme.poster;
+        poster.style.display = "block";
+
+      } else {
+
+        poster.style.display = "none";
+
       }
 
 
-      modalPoster.src =
-        filmeSelecionado.poster;
+      document.getElementById("detailsTitle").textContent =
+        filme.title;
 
 
-      modalTitle.textContent =
-        filmeSelecionado.title;
+      document.getElementById("detailsYear").textContent =
+        filme.year || "";
 
 
-      modalDescription.textContent =
-        filmeSelecionado.description;
+      document.getElementById("detailsDescription").textContent =
+        filme.description || "Nenhuma descrição adicionada.";
 
 
-      modal.classList.add("active");
+      document.getElementById("detailsPlay").onclick =
+        () => playMovie(index);
 
 
-      watchButton.onclick =
-        function() {
-
-          closeModal();
-
-          openPlayer(
-            filmeSelecionado.video,
-            filmeSelecionado.title
-          );
-
-        };
+      document
+        .getElementById("detailsOverlay")
+        .classList.add("active");
 
     }
 
 
-    /* ======================================================
-       FECHAR MODAL
-    ====================================================== */
+    function closeDetails() {
 
-    function closeModal() {
-
-      modal.classList.remove("active");
+      document
+        .getElementById("detailsOverlay")
+        .classList.remove("active");
 
     }
 
 
-    /* ======================================================
-       ABRIR PLAYER
-    ====================================================== */
+    /* ==========================================
+       REPRODUZIR
+    ========================================== */
 
-    function openPlayer(url, title) {
+    function playMovie(index) {
 
-      if (
-        !url ||
-        url === "COLE_AQUI_O_LINK_AUTORIZADO"
-      ) {
+      const filme = filmes[index];
 
-        alert(
-          "Este filme ainda não possui um link de vídeo cadastrado."
-        );
+      if (!filme || !filme.video) {
+
+        alert("Este filme não possui um link de vídeo.");
 
         return;
 
       }
 
 
-      playerTitle.textContent =
-        title;
+      closeDetails();
 
 
-      video.src =
-        url;
+      const player =
+        document.getElementById("videoPlayer");
 
 
-      player.classList.add("active");
+      document.getElementById("playerTitle").textContent =
+        filme.title;
 
 
-      video.play().catch(() => {});
+      player.src = filme.video;
+
+
+      document
+        .getElementById("playerOverlay")
+        .classList.add("active");
+
+
+      player.play().catch(() => {});
 
     }
 
-
-    /* ======================================================
-       FECHAR PLAYER
-    ====================================================== */
 
     function closePlayer() {
 
-      video.pause();
+      const player =
+        document.getElementById("videoPlayer");
 
-      video.removeAttribute("src");
 
-      video.load();
+      player.pause();
 
-      player.classList.remove("active");
+      player.removeAttribute("src");
+
+      player.load();
+
+
+      document
+        .getElementById("playerOverlay")
+        .classList.remove("active");
 
     }
 
 
-    /* ======================================================
-       ESC
-    ====================================================== */
+    /* ==========================================
+       EXCLUIR
+    ========================================== */
+
+    function deleteMovie(index) {
+
+      const filme = filmes[index];
+
+      if (!filme) return;
+
+
+      const confirmar =
+        confirm(
+          `Deseja excluir "${filme.title}" da sua biblioteca?`
+        );
+
+
+      if (!confirmar) return;
+
+
+      filmes.splice(index, 1);
+
+      salvarFilmes();
+
+      renderCatalog();
+
+    }
+
+
+    /* ==========================================
+       PESQUISA
+    ========================================== */
+
+    searchInput.addEventListener(
+      "input",
+      renderCatalog
+    );
+
+
+    /* ==========================================
+       FECHAR MODAIS CLICANDO FORA
+    ========================================== */
+
+    document
+      .getElementById("addOverlay")
+      .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+
+          closeAddModal();
+
+        }
+
+      });
+
+
+    document
+      .getElementById("detailsOverlay")
+      .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+
+          closeDetails();
+
+        }
+
+      });
+
+
+    document
+      .getElementById("playerOverlay")
+      .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+
+          closePlayer();
+
+        }
+
+      });
+
+
+    /* ==========================================
+       ESC FECHA JANELAS
+    ========================================== */
 
     document.addEventListener(
       "keydown",
@@ -1005,7 +1334,9 @@
 
         if (event.key === "Escape") {
 
-          closeModal();
+          closeAddModal();
+
+          closeDetails();
 
           closePlayer();
 
@@ -1015,9 +1346,25 @@
     );
 
 
-    /* ======================================================
+    /* ==========================================
+       SEGURANÇA BÁSICA PARA TEXTO DIGITADO
+    ========================================== */
+
+    function escapeHTML(text) {
+
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* ==========================================
        INICIAR
-    ====================================================== */
+    ========================================== */
 
     renderCatalog();
 
