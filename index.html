@@ -1,13 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Minha Stream</title>
-
-  <!-- HLS para vídeos .m3u8 -->
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <title>Minha Estante</title>
 
   <style>
     * {
@@ -17,13 +14,12 @@
     }
 
     :root {
-      --bg: #08090c;
-      --bg2: #101217;
-      --card: #17191f;
-      --red: #e50914;
-      --text: #ffffff;
-      --muted: #999ca5;
-      --border: #282b32;
+      --bg: #090a0d;
+      --card: #15171c;
+      --text: #f5f5f5;
+      --muted: #999da7;
+      --accent: #b88a4a;
+      --accent-light: #d9b77a;
     }
 
     body {
@@ -33,108 +29,67 @@
       min-height: 100vh;
     }
 
-    button,
-    input {
-      font-family: inherit;
-    }
-
     button {
+      font-family: inherit;
       cursor: pointer;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* ==============================
+       CABEÇALHO
+    ============================== */
 
     header {
-      height: 72px;
-      background: rgba(8, 9, 12, 0.96);
+      height: 75px;
       display: flex;
       align-items: center;
       padding: 0 5%;
-      gap: 35px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(9,10,13,.96);
       position: sticky;
       top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      z-index: 50;
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: 900;
-      white-space: nowrap;
-      letter-spacing: 1px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 3px;
     }
 
     .logo span {
-      color: var(--red);
+      color: var(--accent-light);
     }
 
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      color: #bbb;
-      font-size: 14px;
-      transition: .2s;
-    }
-
-    nav button:hover,
-    nav button.active {
-      color: white;
-    }
-
-    .search-box {
+    .search {
       margin-left: auto;
-      width: 250px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #17191f;
-      border: 1px solid var(--border);
+      width: 240px;
+      background: #15171c;
+      border: 1px solid #292c32;
       border-radius: 8px;
-      padding: 9px 12px;
-    }
-
-    .search-box input {
-      width: 100%;
-      border: none;
-      outline: none;
-      background: transparent;
+      padding: 10px 13px;
       color: white;
-      font-size: 14px;
+      outline: none;
     }
 
-    .search-box input::placeholder {
-      color: #777;
-    }
-
-    /* =========================
+    /* ==============================
        HERO
-    ========================= */
+    ============================== */
 
     .hero {
-      min-height: 470px;
-      margin: 0 4%;
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
+      min-height: 380px;
+      margin: 25px 5% 0;
+      border-radius: 15px;
       display: flex;
       align-items: center;
-      padding: 60px;
+      padding: 55px;
       background:
         linear-gradient(
           90deg,
-          rgba(5,6,8,0.98) 0%,
-          rgba(5,6,8,0.82) 35%,
-          rgba(5,6,8,0.25) 75%,
-          rgba(5,6,8,0.2) 100%
+          rgba(9,10,13,.98),
+          rgba(9,10,13,.78),
+          rgba(9,10,13,.2)
         ),
-        url("https://picsum.photos/seed/cinema/1600/800")
+        url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80")
         center/cover;
     }
 
@@ -142,92 +97,77 @@
       max-width: 580px;
     }
 
-    .hero-label {
-      color: var(--red);
+    .small-title {
+      color: var(--accent-light);
       font-size: 12px;
       letter-spacing: 3px;
-      font-weight: bold;
       margin-bottom: 15px;
     }
 
     .hero h1 {
+      font-family: Georgia, serif;
       font-size: 52px;
-      line-height: 1.03;
-      margin-bottom: 20px;
+      line-height: 1.05;
+      margin-bottom: 15px;
     }
 
     .hero p {
-      color: #c0c1c5;
+      color: #bbbfc7;
       line-height: 1.6;
-      font-size: 15px;
-      margin-bottom: 25px;
+      max-width: 500px;
     }
 
-    .hero-button {
-      border: none;
-      background: white;
-      color: black;
-      padding: 13px 22px;
-      border-radius: 7px;
-      font-weight: bold;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    /* ==============================
+       CATÁLOGO
+    ============================== */
+
+    .catalog-section {
+      padding: 45px 5%;
     }
 
-    .hero-button:hover {
-      background: #ddd;
-    }
-
-    /* =========================
-       SEÇÕES
-    ========================= */
-
-    .section {
-      padding: 35px 5%;
-    }
-
-    .section-header {
+    .section-title {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
 
-    .section-header h2 {
-      font-size: 24px;
+    .section-title h2 {
+      font-family: Georgia, serif;
+      font-size: 28px;
     }
 
-    .section-header span {
-      color: #666;
+    .section-title span {
+      color: var(--muted);
       font-size: 13px;
     }
 
-    /* =========================
-       CARDS
-    ========================= */
-
     .catalog {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 18px;
+      grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+      gap: 22px;
     }
+
+    /* ==============================
+       CARD
+    ============================== */
 
     .card {
       background: var(--card);
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid transparent;
-      transition: .2s;
+      transition: .25s;
       position: relative;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      border-color: #333;
+      transform: translateY(-6px);
+      border-color: #383b42;
     }
 
-    .card-poster {
+    .poster {
       width: 100%;
       aspect-ratio: 2 / 3;
       object-fit: cover;
@@ -235,81 +175,108 @@
     }
 
     .card-info {
-      padding: 11px;
+      padding: 13px;
     }
 
     .card-title {
       font-size: 14px;
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-weight: 600;
+      line-height: 1.4;
     }
 
-    .card-meta {
-      margin-top: 6px;
-      color: #777;
+    .card-subtitle {
+      color: #777c86;
       font-size: 11px;
+      margin-top: 6px;
     }
 
-    .favorite-button {
+    .play-icon {
       position: absolute;
-      right: 8px;
-      top: 8px;
-      width: 34px;
-      height: 34px;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       border: none;
-      background: rgba(0,0,0,.75);
+      background: rgba(184,138,74,.95);
       color: white;
-      font-size: 17px;
-      z-index: 2;
+      font-size: 19px;
+      opacity: 0;
+      transition: .2s;
     }
 
-    .favorite-button.active {
-      color: #ff3040;
+    .card:hover .play-icon {
+      opacity: 1;
     }
 
-    /* =========================
+    /* ==============================
        MODAL
-    ========================= */
+    ============================== */
 
-    .modal-background {
+    .modal-bg {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.85);
-      z-index: 500;
+      background: rgba(0,0,0,.88);
       display: none;
       align-items: center;
       justify-content: center;
+      z-index: 100;
       padding: 20px;
     }
 
-    .modal-background.show {
+    .modal-bg.active {
       display: flex;
     }
 
     .modal {
-      width: min(900px, 100%);
+      width: min(850px, 100%);
       max-height: 90vh;
       overflow-y: auto;
       background: #15171c;
       border-radius: 14px;
-      position: relative;
       display: flex;
+      position: relative;
     }
 
     .modal-poster {
-      width: 300px;
+      width: 290px;
       object-fit: cover;
     }
 
-    .modal-content {
+    .modal-info {
       padding: 35px;
       flex: 1;
     }
 
-    .modal-close {
+    .modal-info h2 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .modal-info p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .watch-button {
+      background: var(--accent);
+      border: none;
+      color: white;
+      border-radius: 7px;
+      padding: 13px 22px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .watch-button:hover {
+      background: var(--accent-light);
+      color: #111;
+    }
+
+    .close {
       position: absolute;
       right: 15px;
       top: 15px;
@@ -317,206 +284,106 @@
       height: 38px;
       border: none;
       border-radius: 50%;
-      background: #24262c;
+      background: rgba(0,0,0,.65);
       color: white;
       font-size: 22px;
+      z-index: 2;
     }
 
-    .modal h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-      padding-right: 40px;
-    }
-
-    .modal-meta {
-      color: #888;
-      margin-bottom: 20px;
-      font-size: 13px;
-    }
-
-    .modal-description {
-      color: #bbb;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    .watch-button {
-      border: none;
-      background: var(--red);
-      color: white;
-      padding: 12px 20px;
-      border-radius: 7px;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
-
-    .watch-button:hover {
-      background: #ff1a25;
-    }
-
-    /* =========================
-       EPISÓDIOS
-    ========================= */
-
-    .season-title {
-      font-size: 17px;
-      margin: 15px 0 10px;
-    }
-
-    .episode {
-      width: 100%;
-      border: none;
-      background: #20232a;
-      color: white;
-      border-radius: 7px;
-      padding: 12px;
-      margin-bottom: 7px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: left;
-    }
-
-    .episode:hover {
-      background: #292c34;
-    }
-
-    /* =========================
+    /* ==============================
        PLAYER
-    ========================= */
+    ============================== */
 
-    .player-background {
+    .player-bg {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.96);
-      z-index: 1000;
+      background: #000;
+      z-index: 200;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
     }
 
-    .player-background.show {
+    .player-bg.active {
       display: flex;
     }
 
     .player-container {
-      width: min(1200px, 100%);
-      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px;
     }
 
     .player-title {
-      font-size: 18px;
       margin-bottom: 12px;
+      color: #ddd;
+      font-size: 15px;
     }
 
     video {
       width: 100%;
-      max-height: 80vh;
-      background: black;
-      display: block;
+      max-height: 82vh;
+      background: #000;
     }
 
     .player-close {
       position: absolute;
-      right: 0;
-      top: -50px;
-      width: 40px;
-      height: 40px;
+      right: 25px;
+      top: 20px;
+      width: 42px;
+      height: 42px;
       border: none;
       border-radius: 50%;
-      background: #25272c;
+      background: #222;
       color: white;
-      font-size: 22px;
+      font-size: 23px;
+      z-index: 3;
     }
 
-    /* =========================
-       SEM RESULTADOS
-    ========================= */
+    /* ==============================
+       VAZIO
+    ============================== */
 
     .empty {
-      color: #777;
-      padding: 40px 0;
       text-align: center;
-    }
-
-    /* =========================
-       ADMIN
-    ========================= */
-
-    .admin-box {
-      background: #121419;
-      border: 1px solid var(--border);
-      padding: 25px;
-      border-radius: 12px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .admin-box h2 {
-      margin-bottom: 20px;
-    }
-
-    .admin-box input,
-    .admin-box textarea,
-    .admin-box select {
-      width: 100%;
-      background: #1b1e24;
-      color: white;
-      border: 1px solid #30333a;
-      border-radius: 7px;
-      padding: 11px;
-      margin-bottom: 10px;
-      outline: none;
-    }
-
-    .admin-box textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .admin-button {
-      border: none;
-      background: var(--red);
-      color: white;
-      padding: 11px 18px;
-      border-radius: 7px;
-      font-weight: bold;
-    }
-
-    .admin-note {
+      padding: 60px;
       color: #777;
-      font-size: 12px;
-      margin-top: 15px;
-      line-height: 1.5;
     }
 
-    /* =========================
+    /* ==============================
        RESPONSIVO
-    ========================= */
+    ============================== */
 
-    @media (max-width: 800px) {
+    @media (max-width: 700px) {
 
       header {
         padding: 0 4%;
-        gap: 15px;
       }
 
-      nav {
-        display: none;
-      }
-
-      .search-box {
-        width: 170px;
+      .search {
+        width: 150px;
       }
 
       .hero {
-        min-height: 380px;
-        padding: 35px;
+        margin: 15px 3%;
+        min-height: 330px;
+        padding: 30px;
       }
 
       .hero h1 {
-        font-size: 38px;
+        font-size: 37px;
+      }
+
+      .catalog-section {
+        padding: 30px 4%;
+      }
+
+      .catalog {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
       }
 
       .modal {
@@ -528,36 +395,12 @@
         height: 280px;
       }
 
-      .catalog {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 500px) {
-
-      .logo {
-        font-size: 17px;
-      }
-
-      .search-box {
-        width: 140px;
-      }
-
-      .hero {
-        margin: 0 3%;
+      .modal-info {
         padding: 25px;
       }
 
-      .hero h1 {
-        font-size: 31px;
-      }
-
-      .section {
-        padding: 25px 4%;
-      }
-
-      .catalog {
-        gap: 10px;
+      .modal-info h2 {
+        font-size: 25px;
       }
     }
   </style>
@@ -565,131 +408,99 @@
 
 <body>
 
-  <!-- =========================
+  <!-- =====================================
        CABEÇALHO
-  ========================== -->
+  ====================================== -->
 
   <header>
 
     <div class="logo">
-      MINHA<span>STREAM</span>
+      MINHA <span>ESTANTE</span>
     </div>
 
-    <nav>
-      <button class="active" onclick="changePage('home')">
-        Início
-      </button>
-
-      <button onclick="changePage('favorites')">
-        Minha lista
-      </button>
-
-      <button onclick="changePage('admin')">
-        Adicionar
-      </button>
-    </nav>
-
-    <div class="search-box">
-
-      🔎
-
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Buscar filmes e séries..."
-        oninput="searchCatalog()"
-      >
-
-    </div>
+    <input
+      class="search"
+      id="search"
+      type="text"
+      placeholder="Pesquisar..."
+      oninput="renderCatalog()"
+    >
 
   </header>
 
 
-  <!-- =========================
-       CONTEÚDO PRINCIPAL
-  ========================== -->
+  <!-- =====================================
+       DESTAQUE
+  ====================================== -->
 
-  <main id="mainContent">
+  <section class="hero">
 
-    <!-- HERO -->
+    <div class="hero-content">
 
-    <section class="hero">
-
-      <div class="hero-content">
-
-        <div class="hero-label">
-          SEU CATÁLOGO
-        </div>
-
-        <h1>
-          Filmes e séries
-          <br>
-          em um só lugar.
-        </h1>
-
-        <p>
-          Organize seus filmes e séries favoritos em uma interface
-          simples, bonita e adaptada para computador, celular e TV.
-        </p>
-
-        <button
-          class="hero-button"
-          onclick="scrollToCatalog()"
-        >
-          ▶ Ver catálogo
-        </button>
-
+      <div class="small-title">
+        MINHA COLEÇÃO
       </div>
 
-    </section>
+      <h1>
+        Harry Potter
+      </h1>
+
+      <p>
+        Minha coleção pessoal de filmes.
+        Escolha um título para abrir e assistir.
+      </p>
+
+    </div>
+
+  </section>
 
 
-    <!-- CATÁLOGO -->
+  <!-- =====================================
+       CATÁLOGO
+  ====================================== -->
 
-    <section class="section" id="catalogSection">
+  <section class="catalog-section">
 
-      <div class="section-header">
+    <div class="section-title">
 
-        <h2 id="sectionTitle">
-          Filmes e séries
-        </h2>
+      <h2>
+        Harry Potter
+      </h2>
 
-        <span id="resultCount"></span>
+      <span id="count"></span>
 
-      </div>
+    </div>
 
-      <div
-        class="catalog"
-        id="catalog"
-      ></div>
+    <div
+      class="catalog"
+      id="catalog"
+    ></div>
 
-      <div
-        class="empty"
-        id="emptyMessage"
-        style="display:none"
-      >
-        Nenhum título encontrado.
-      </div>
+    <div
+      class="empty"
+      id="empty"
+      style="display:none"
+    >
+      Nenhum filme encontrado.
+    </div>
 
-    </section>
-
-  </main>
+  </section>
 
 
-  <!-- =========================
-       MODAL DO FILME
-  ========================== -->
+  <!-- =====================================
+       MODAL
+  ====================================== -->
 
   <div
-    class="modal-background"
-    id="movieModal"
+    class="modal-bg"
+    id="modal"
   >
 
     <div class="modal">
 
       <button
-        class="modal-close"
-        onclick="closeMovie()"
+        class="close"
+        onclick="closeModal()"
       >
         ×
       </button>
@@ -701,21 +512,18 @@
         alt=""
       >
 
-      <div class="modal-content">
+      <div class="modal-info">
 
         <h2 id="modalTitle"></h2>
 
-        <div
-          class="modal-meta"
-          id="modalMeta"
-        ></div>
+        <p id="modalDescription"></p>
 
-        <p
-          class="modal-description"
-          id="modalDescription"
-        ></p>
-
-        <div id="modalActions"></div>
+        <button
+          class="watch-button"
+          id="watchButton"
+        >
+          ▶ Assistir
+        </button>
 
       </div>
 
@@ -724,23 +532,23 @@
   </div>
 
 
-  <!-- =========================
+  <!-- =====================================
        PLAYER
-  ========================== -->
+  ====================================== -->
 
   <div
-    class="player-background"
-    id="playerBackground"
+    class="player-bg"
+    id="player"
   >
 
-    <div class="player-container">
+    <button
+      class="player-close"
+      onclick="closePlayer()"
+    >
+      ×
+    </button>
 
-      <button
-        class="player-close"
-        onclick="closePlayer()"
-      >
-        ×
-      </button>
+    <div class="player-container">
 
       <div
         class="player-title"
@@ -748,7 +556,7 @@
       ></div>
 
       <video
-        id="videoPlayer"
+        id="video"
         controls
         playsinline
       ></video>
@@ -760,178 +568,244 @@
 
   <script>
 
-    /* =========================================================
-       CATÁLOGO
-    ========================================================= */
+    /*
+    ==========================================================
+    FILMES
 
-    const defaultCatalog = [
+    Aqui ficam os filmes da sua coleção.
+
+    Para adicionar outro filme, copie um bloco e altere:
+    - title
+    - year
+    - poster
+    - description
+    - video
+
+    Use somente URLs de vídeo que você tenha autorização
+    para reproduzir.
+    ==========================================================
+    */
+
+    const filmes = [
 
       {
-        id: "filme-1",
+        title:
+          "Harry Potter e a Pedra Filosofal",
 
-        title: "Big Buck Bunny",
-
-        year: 2008,
-
-        genre: "Animação",
-
-        type: "movie",
+        year:
+          "2001",
 
         poster:
-          "https://picsum.photos/seed/bunny/600/900",
+          "https://image.tmdb.org/t/p/w500/l1T6Y3mY9Z8N4M9Q0F1A0P8Q8rH.jpg",
 
         description:
-          "Filme de demonstração utilizado para testar o player.",
+          "Harry Potter descobre que é um bruxo e começa seus estudos em Hogwarts.",
 
         video:
-          "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          "COLE_AQUI_O_LINK_AUTORIZADO"
       },
 
 
       {
-        id: "filme-2",
+        title:
+          "Harry Potter e a Câmara Secreta",
 
-        title: "Elephants Dream",
-
-        year: 2006,
-
-        genre: "Animação",
-
-        type: "movie",
+        year:
+          "2002",
 
         poster:
-          "https://picsum.photos/seed/elephants/600/900",
+          "https://image.tmdb.org/t/p/w500/7xXJ15VEf7G9Gd7mYJf1A9pQW8M.jpg",
 
         description:
-          "Outro vídeo de demonstração.",
+          "Harry retorna a Hogwarts e descobre que uma antiga ameaça foi libertada.",
 
         video:
-          "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          "COLE_AQUI_O_LINK_AUTORIZADO"
       },
 
 
       {
-        id: "serie-1",
+        title:
+          "Harry Potter e o Prisioneiro de Azkaban",
 
-        title: "Minha Série",
-
-        year: 2025,
-
-        genre: "Série",
-
-        type: "series",
+        year:
+          "2004",
 
         poster:
-          "https://picsum.photos/seed/series/600/900",
+          "https://image.tmdb.org/t/p/w500/aWxwnYoe8p2d2uE6Q3J7qJ1R8cL.jpg",
 
         description:
-          "Exemplo de uma série com temporadas e episódios.",
+          "Harry conhece mais sobre o passado de sua família enquanto Sirius Black escapa de Azkaban.",
 
-        seasons: [
+        video:
+          "COLE_AQUI_O_LINK_AUTORIZADO"
+      },
 
-          {
-            number: 1,
 
-            episodes: [
+      {
+        title:
+          "Harry Potter e o Cálice de Fogo",
 
-              {
-                id: "ep1",
+        year:
+          "2005",
 
-                title: "Episódio 1",
+        poster:
+          "https://image.tmdb.org/t/p/w500/fECBtHlr0RB2H5J4j3sY1kK8w5A.jpg",
 
-                video:
-                  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-              },
+        description:
+          "Harry é inesperadamente escolhido para participar do Torneio Tribruxo.",
 
-              {
-                id: "ep2",
+        video:
+          "COLE_AQUI_O_LINK_AUTORIZADO"
+      },
 
-                title: "Episódio 2",
 
-                video:
-                  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-              }
+      {
+        title:
+          "Harry Potter e a Ordem da Fênix",
 
-            ]
-          }
+        year:
+          "2007",
 
-        ]
+        poster:
+          "https://image.tmdb.org/t/p/w500/5aOyriWkPec0zUDwY5Y4Q8Q1b2K.jpg",
+
+        description:
+          "Harry enfrenta uma nova realidade em Hogwarts enquanto o mundo bruxo se prepara para uma ameaça crescente.",
+
+        video:
+          "COLE_AQUI_O_LINK_AUTORIZADO"
+      },
+
+
+      {
+        title:
+          "Harry Potter e o Enigma do Príncipe",
+
+        year:
+          "2009",
+
+        poster:
+          "https://image.tmdb.org/t/p/w500/z7uo8BjKXf5GQkJ8J1D4Y5K6Q9A.jpg",
+
+        description:
+          "Harry descobre informações importantes sobre o passado de Voldemort.",
+
+        video:
+          "COLE_AQUI_O_LINK_AUTORIZADO"
+      },
+
+
+      {
+        title:
+          "Harry Potter e as Relíquias da Morte — Parte 1",
+
+        year:
+          "2010",
+
+        poster:
+          "https://image.tmdb.org/t/p/w500/iGoXIpQb7Pot00EEdwpwPajheZ5.jpg",
+
+        description:
+          "Harry, Ron e Hermione deixam Hogwarts para procurar as Horcruxes.",
+
+        video:
+          "COLE_AQUI_O_LINK_AUTORIZADO"
+      },
+
+
+      {
+        title:
+          "Harry Potter e as Relíquias da Morte — Parte 2",
+
+        year:
+          "2011",
+
+        poster:
+          "https://image.tmdb.org/t/p/w500/c54HpQmuwXjHq2C9wmoacY9bq6P.jpg",
+
+        description:
+          "A batalha final entre Harry Potter e Voldemort chega ao seu desfecho.",
+
+        video:
+          "COLE_AQUI_O_LINK_AUTORIZADO"
       }
 
     ];
 
 
-    /*
-      Carrega os filmes salvos no navegador.
+    /* ======================================================
+       ELEMENTOS
+    ====================================================== */
 
-      Assim você poderá adicionar títulos pelo próprio site.
-    */
+    const catalog =
+      document.getElementById("catalog");
 
-    let catalog =
-      JSON.parse(
-        localStorage.getItem("myStreamCatalog")
-      ) || defaultCatalog;
+    const search =
+      document.getElementById("search");
 
+    const count =
+      document.getElementById("count");
 
-    let favorites =
-      JSON.parse(
-        localStorage.getItem("myStreamFavorites")
-      ) || [];
+    const empty =
+      document.getElementById("empty");
 
+    const modal =
+      document.getElementById("modal");
 
-    let currentPage = "home";
+    const modalPoster =
+      document.getElementById("modalPoster");
 
+    const modalTitle =
+      document.getElementById("modalTitle");
 
-    /* =========================================================
-       SALVAR CATÁLOGO
-    ========================================================= */
+    const modalDescription =
+      document.getElementById("modalDescription");
 
-    function saveCatalog() {
+    const watchButton =
+      document.getElementById("watchButton");
 
-      localStorage.setItem(
-        "myStreamCatalog",
-        JSON.stringify(catalog)
-      );
+    const player =
+      document.getElementById("player");
 
-    }
+    const video =
+      document.getElementById("video");
 
-
-    /* =========================================================
-       SALVAR FAVORITOS
-    ========================================================= */
-
-    function saveFavorites() {
-
-      localStorage.setItem(
-        "myStreamFavorites",
-        JSON.stringify(favorites)
-      );
-
-    }
+    const playerTitle =
+      document.getElementById("playerTitle");
 
 
-    /* =========================================================
-       EXIBIR CATÁLOGO
-    ========================================================= */
+    let filmeSelecionado = null;
 
-    function renderCatalog(list = catalog) {
 
-      const container =
-        document.getElementById("catalog");
+    /* ======================================================
+       MOSTRAR CATÁLOGO
+    ====================================================== */
 
-      const empty =
-        document.getElementById("emptyMessage");
+    function renderCatalog() {
 
-      const count =
-        document.getElementById("resultCount");
+      const termo =
+        search.value
+          .toLowerCase()
+          .trim();
 
-      container.innerHTML = "";
+
+      const resultados =
+        filmes.filter(filme =>
+          filme.title
+            .toLowerCase()
+            .includes(termo)
+        );
+
+
+      catalog.innerHTML = "";
+
 
       count.textContent =
-        list.length + " título(s)";
+        resultados.length + " filmes";
 
 
-      if (list.length === 0) {
+      if (resultados.length === 0) {
 
         empty.style.display = "block";
 
@@ -939,10 +813,11 @@
 
       }
 
+
       empty.style.display = "none";
 
 
-      list.forEach(movie => {
+      resultados.forEach((filme, index) => {
 
         const card =
           document.createElement("div");
@@ -950,799 +825,179 @@
         card.className = "card";
 
 
-        const isFavorite =
-          favorites.includes(movie.id);
-
-
         card.innerHTML = `
 
-          <button
-            class="favorite-button ${isFavorite ? "active" : ""}"
-            onclick="toggleFavorite(event, '${movie.id}')"
-          >
-            ${isFavorite ? "♥" : "♡"}
-          </button>
-
           <img
-            class="card-poster"
-            src="${movie.poster}"
-            alt="${escapeHtml(movie.title)}"
-            onclick="openMovie('${movie.id}')"
+            class="poster"
+            src="${filme.poster}"
+            alt="${filme.title}"
           >
+
+          <button
+            class="play-icon"
+            onclick="openMovie(${index})"
+          >
+            ▶
+          </button>
 
           <div
             class="card-info"
-            onclick="openMovie('${movie.id}')"
-            style="cursor:pointer"
+            onclick="openMovie(${index})"
           >
 
             <div class="card-title">
-              ${escapeHtml(movie.title)}
+              ${filme.title}
             </div>
 
-            <div class="card-meta">
-              ${movie.year || ""}
-              ${movie.genre ? " • " + escapeHtml(movie.genre) : ""}
+            <div class="card-subtitle">
+              ${filme.year}
             </div>
 
           </div>
+
         `;
 
 
-        container.appendChild(card);
+        /*
+          O card inteiro também abre o filme.
+        */
+
+        card.onclick = function(event) {
+
+          if (
+            !event.target.classList.contains(
+              "play-icon"
+            )
+          ) {
+
+            openMovie(
+              filmes.indexOf(filme)
+            );
+
+          }
+
+        };
+
+
+        catalog.appendChild(card);
 
       });
 
     }
 
 
-    /* =========================================================
+    /* ======================================================
        ABRIR FILME
-    ========================================================= */
+    ====================================================== */
 
-    function openMovie(id) {
+    function openMovie(index) {
 
-      const movie =
-        catalog.find(item => item.id === id);
-
-      if (!movie) return;
+      filmeSelecionado =
+        filmes[index];
 
 
-      document.getElementById("modalPoster").src =
-        movie.poster;
-
-      document.getElementById("modalTitle").textContent =
-        movie.title;
-
-      document.getElementById("modalMeta").textContent =
-        `${movie.year || ""} • ${movie.genre || ""}`;
+      if (!filmeSelecionado) {
+        return;
+      }
 
 
-      document.getElementById("modalDescription").textContent =
-        movie.description || "";
+      modalPoster.src =
+        filmeSelecionado.poster;
 
 
-      const actions =
-        document.getElementById("modalActions");
-
-      actions.innerHTML = "";
+      modalTitle.textContent =
+        filmeSelecionado.title;
 
 
-      /*
-        FILME
-      */
+      modalDescription.textContent =
+        filmeSelecionado.description;
 
-      if (
-        movie.type === "movie" &&
-        movie.video
-      ) {
 
-        const button =
-          document.createElement("button");
+      modal.classList.add("active");
 
-        button.className = "watch-button";
 
-        button.textContent = "▶ Assistir";
+      watchButton.onclick =
+        function() {
 
-        button.onclick = () => {
-
-          closeMovie();
+          closeModal();
 
           openPlayer(
-            movie.video,
-            movie.title
+            filmeSelecionado.video,
+            filmeSelecionado.title
           );
 
         };
 
-
-        actions.appendChild(button);
-
-      }
+    }
 
 
-      /*
-        SÉRIE
-      */
+    /* ======================================================
+       FECHAR MODAL
+    ====================================================== */
 
-      if (
-        movie.type === "series" &&
-        movie.seasons
-      ) {
+    function closeModal() {
 
-        movie.seasons.forEach(season => {
-
-          const title =
-            document.createElement("div");
-
-          title.className = "season-title";
-
-          title.textContent =
-            "Temporada " + season.number;
-
-          actions.appendChild(title);
-
-
-          season.episodes.forEach(episode => {
-
-            const button =
-              document.createElement("button");
-
-            button.className = "episode";
-
-            button.innerHTML = `
-
-              <span>
-                ${escapeHtml(episode.title)}
-              </span>
-
-              <span>
-                ▶
-              </span>
-
-            `;
-
-
-            button.onclick = () => {
-
-              closeMovie();
-
-              openPlayer(
-                episode.video,
-                movie.title + " — " + episode.title
-              );
-
-            };
-
-
-            actions.appendChild(button);
-
-          });
-
-        });
-
-      }
-
-
-      document
-        .getElementById("movieModal")
-        .classList.add("show");
+      modal.classList.remove("active");
 
     }
 
 
-    /* =========================================================
-       FECHAR FILME
-    ========================================================= */
-
-    function closeMovie() {
-
-      document
-        .getElementById("movieModal")
-        .classList.remove("show");
-
-    }
-
-
-    /* =========================================================
-       PLAYER
-    ========================================================= */
-
-    let hlsInstance = null;
-
+    /* ======================================================
+       ABRIR PLAYER
+    ====================================================== */
 
     function openPlayer(url, title) {
 
-      const player =
-        document.getElementById("videoPlayer");
-
-      document.getElementById("playerTitle")
-        .textContent = title;
-
-
-      document
-        .getElementById("playerBackground")
-        .classList.add("show");
-
-
-      /*
-        Limpa player anterior
-      */
-
-      if (hlsInstance) {
-
-        hlsInstance.destroy();
-
-        hlsInstance = null;
-
-      }
-
-
-      player.pause();
-
-      player.removeAttribute("src");
-
-      player.load();
-
-
-      /*
-        HLS (.m3u8)
-      */
-
       if (
-        url.includes(".m3u8") &&
-        typeof Hls !== "undefined" &&
-        Hls.isSupported()
+        !url ||
+        url === "COLE_AQUI_O_LINK_AUTORIZADO"
       ) {
 
-        hlsInstance =
-          new Hls();
-
-        hlsInstance.loadSource(url);
-
-        hlsInstance.attachMedia(player);
-
-        hlsInstance.on(
-          Hls.Events.MANIFEST_PARSED,
-          function () {
-
-            player.play().catch(() => {});
-
-          }
+        alert(
+          "Este filme ainda não possui um link de vídeo cadastrado."
         );
 
-      }
-
-      /*
-        Safari / dispositivos com HLS nativo
-      */
-
-      else if (
-        url.includes(".m3u8") &&
-        player.canPlayType(
-          "application/vnd.apple.mpegurl"
-        )
-      ) {
-
-        player.src = url;
-
-        player.play().catch(() => {});
+        return;
 
       }
 
-      /*
-        MP4
-      */
 
-      else {
+      playerTitle.textContent =
+        title;
 
-        player.src = url;
 
-        player.play().catch(() => {});
+      video.src =
+        url;
 
-      }
+
+      player.classList.add("active");
+
+
+      video.play().catch(() => {});
 
     }
 
 
-    /* =========================================================
+    /* ======================================================
        FECHAR PLAYER
-    ========================================================= */
+    ====================================================== */
 
     function closePlayer() {
 
-      const player =
-        document.getElementById("videoPlayer");
+      video.pause();
 
+      video.removeAttribute("src");
 
-      player.pause();
+      video.load();
 
-
-      if (hlsInstance) {
-
-        hlsInstance.destroy();
-
-        hlsInstance = null;
-
-      }
-
-
-      player.removeAttribute("src");
-
-      player.load();
-
-
-      document
-        .getElementById("playerBackground")
-        .classList.remove("show");
+      player.classList.remove("active");
 
     }
 
 
-    /* =========================================================
-       FAVORITOS
-    ========================================================= */
-
-    function toggleFavorite(event, id) {
-
-      event.stopPropagation();
-
-
-      if (favorites.includes(id)) {
-
-        favorites =
-          favorites.filter(
-            favorite => favorite !== id
-          );
-
-      } else {
-
-        favorites.push(id);
-
-      }
-
-
-      saveFavorites();
-
-      renderCatalog(
-        getCurrentList()
-      );
-
-    }
-
-
-    /* =========================================================
-       PESQUISA
-    ========================================================= */
-
-    function searchCatalog() {
-
-      const search =
-        document
-          .getElementById("searchInput")
-          .value
-          .toLowerCase()
-          .trim();
-
-
-      let list =
-        getCurrentList();
-
-
-      if (search) {
-
-        list =
-          list.filter(movie =>
-
-            movie.title
-              .toLowerCase()
-              .includes(search)
-
-            ||
-
-            (movie.genre || "")
-              .toLowerCase()
-              .includes(search)
-
-          );
-
-      }
-
-
-      renderCatalog(list);
-
-    }
-
-
-    /* =========================================================
-       LISTA ATUAL
-    ========================================================= */
-
-    function getCurrentList() {
-
-      if (currentPage === "favorites") {
-
-        return catalog.filter(
-          movie =>
-            favorites.includes(movie.id)
-        );
-
-      }
-
-
-      return catalog;
-
-    }
-
-
-    /* =========================================================
-       NAVEGAÇÃO
-    ========================================================= */
-
-    function changePage(page) {
-
-      currentPage = page;
-
-
-      document
-        .querySelectorAll("nav button")
-        .forEach(button => {
-
-          button.classList.remove("active");
-
-        });
-
-
-      if (page === "home") {
-
-        document.querySelectorAll("nav button")[0]
-          .classList.add("active");
-
-        document.getElementById("mainContent").innerHTML = `
-
-          <section class="hero">
-
-            <div class="hero-content">
-
-              <div class="hero-label">
-                SEU CATÁLOGO
-              </div>
-
-              <h1>
-                Filmes e séries
-                <br>
-                em um só lugar.
-              </h1>
-
-              <p>
-                Organize seus filmes e séries favoritos
-                em uma interface simples e bonita.
-              </p>
-
-              <button
-                class="hero-button"
-                onclick="scrollToCatalog()"
-              >
-                ▶ Ver catálogo
-              </button>
-
-            </div>
-
-          </section>
-
-
-          <section class="section" id="catalogSection">
-
-            <div class="section-header">
-
-              <h2>
-                Filmes e séries
-              </h2>
-
-              <span id="resultCount"></span>
-
-            </div>
-
-            <div
-              class="catalog"
-              id="catalog"
-            ></div>
-
-            <div
-              class="empty"
-              id="emptyMessage"
-              style="display:none"
-            >
-              Nenhum título encontrado.
-            </div>
-
-          </section>
-
-        `;
-
-
-        searchCatalog();
-
-      }
-
-
-      if (page === "favorites") {
-
-        document.querySelectorAll("nav button")[1]
-          .classList.add("active");
-
-
-        document.getElementById("mainContent").innerHTML = `
-
-          <section class="section" style="padding-top:50px">
-
-            <div class="section-header">
-
-              <h2>
-                Minha lista
-              </h2>
-
-              <span id="resultCount"></span>
-
-            </div>
-
-            <div
-              class="catalog"
-              id="catalog"
-            ></div>
-
-            <div
-              class="empty"
-              id="emptyMessage"
-              style="display:none"
-            >
-              Você ainda não adicionou nenhum título.
-            </div>
-
-          </section>
-
-        `;
-
-
-        searchCatalog();
-
-      }
-
-
-      if (page === "admin") {
-
-        document.querySelectorAll("nav button")[2]
-          .classList.add("active");
-
-
-        showAdmin();
-
-      }
-
-    }
-
-
-    /* =========================================================
-       ÁREA PARA ADICIONAR FILMES
-    ========================================================= */
-
-    function showAdmin() {
-
-      document.getElementById("mainContent").innerHTML = `
-
-        <section class="section">
-
-          <div class="admin-box">
-
-            <h2>
-              Adicionar filme ou série
-            </h2>
-
-            <input
-              id="adminTitle"
-              placeholder="Nome do filme ou série"
-            >
-
-            <input
-              id="adminYear"
-              type="number"
-              placeholder="Ano"
-            >
-
-            <input
-              id="adminGenre"
-              placeholder="Gênero"
-            >
-
-            <input
-              id="adminPoster"
-              placeholder="URL da capa"
-            >
-
-            <select id="adminType">
-
-              <option value="movie">
-                Filme
-              </option>
-
-              <option value="series">
-                Série
-              </option>
-
-            </select>
-
-            <input
-              id="adminVideo"
-              placeholder="URL direta do vídeo (.mp4 ou .m3u8)"
-            >
-
-            <textarea
-              id="adminDescription"
-              placeholder="Descrição"
-            ></textarea>
-
-            <button
-              class="admin-button"
-              onclick="addMovie()"
-            >
-              + Adicionar ao catálogo
-            </button>
-
-
-            <p class="admin-note">
-
-              Para filmes, informe uma URL direta/autorizada
-              de vídeo MP4 ou HLS (.m3u8).
-
-              <br><br>
-
-              Os dados adicionados por aqui ficam salvos
-              apenas neste navegador através do localStorage.
-
-            </p>
-
-          </div>
-
-        </section>
-
-      `;
-
-    }
-
-
-    /* =========================================================
-       ADICIONAR FILME
-    ========================================================= */
-
-    function addMovie() {
-
-      const title =
-        document.getElementById("adminTitle").value.trim();
-
-      const year =
-        document.getElementById("adminYear").value;
-
-      const genre =
-        document.getElementById("adminGenre").value.trim();
-
-      const poster =
-        document.getElementById("adminPoster").value.trim();
-
-      const type =
-        document.getElementById("adminType").value;
-
-      const video =
-        document.getElementById("adminVideo").value.trim();
-
-      const description =
-        document.getElementById("adminDescription").value.trim();
-
-
-      if (!title) {
-
-        alert("Digite o nome do filme ou série.");
-
-        return;
-
-      }
-
-
-      if (!poster) {
-
-        alert("Informe a URL da capa.");
-
-        return;
-
-      }
-
-
-      if (type === "movie" && !video) {
-
-        alert("Informe a URL do vídeo.");
-
-        return;
-
-      }
-
-
-      const newMovie = {
-
-        id:
-          "movie-" +
-          Date.now(),
-
-        title,
-
-        year:
-          year ? Number(year) : "",
-
-        genre,
-
-        type,
-
-        poster,
-
-        video,
-
-        description
-
-      };
-
-
-      catalog.push(newMovie);
-
-      saveCatalog();
-
-
-      alert(
-        "Título adicionado ao catálogo!"
-      );
-
-
-      changePage("home");
-
-    }
-
-
-    /* =========================================================
-       ROLAGEM
-    ========================================================= */
-
-    function scrollToCatalog() {
-
-      const section =
-        document.getElementById("catalogSection");
-
-      if (section) {
-
-        section.scrollIntoView({
-          behavior: "smooth"
-        });
-
-      }
-
-    }
-
-
-    /* =========================================================
-       ESCAPAR HTML
-    ========================================================= */
-
-    function escapeHtml(text) {
-
-      const div =
-        document.createElement("div");
-
-      div.textContent = text;
-
-      return div.innerHTML;
-
-    }
-
-
-    /* =========================================================
-       TECLA ESC
-    ========================================================= */
+    /* ======================================================
+       ESC
+    ====================================================== */
 
     document.addEventListener(
       "keydown",
@@ -1750,7 +1005,7 @@
 
         if (event.key === "Escape") {
 
-          closeMovie();
+          closeModal();
 
           closePlayer();
 
@@ -1760,31 +1015,9 @@
     );
 
 
-    /* =========================================================
-       CLIQUE FORA DO MODAL
-    ========================================================= */
-
-    document
-      .getElementById("movieModal")
-      .addEventListener(
-        "click",
-        function(event) {
-
-          if (
-            event.target === this
-          ) {
-
-            closeMovie();
-
-          }
-
-        }
-      );
-
-
-    /* =========================================================
-       INICIAR SITE
-    ========================================================= */
+    /* ======================================================
+       INICIAR
+    ====================================================== */
 
     renderCatalog();
 
@@ -1792,3 +1025,4 @@
 
 </body>
 </html>
+```
