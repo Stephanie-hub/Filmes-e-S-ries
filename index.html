@@ -1,20 +1,392 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harry Potter</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#111;color:#fff;font-family:Arial,sans-serif}header{padding:24px 30px;background:#181818;text-align:center}h1{margin:0;font-size:28px}.filmes{width:min(1100px,94%);margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}.filme{background:#1d1d1d;border-radius:12px;overflow:hidden;box-shadow:0 5px 20px #0008}.filme h2{font-size:17px;font-weight:500;margin:0;padding:15px;min-height:52px}video{display:block;width:100%;background:#000;aspect-ratio:16/9}.erro{display:none;padding:12px 15px;color:#bbb;font-size:13px;line-height:1.4}@media(max-width:600px){.filmes{grid-template-columns:1fr}header{padding:20px 15px}}
-</style>
-</head><body>
-<header><h1>Harry Potter</h1></header><main class="filmes">
-<section class="filme"><h2>Harry Potter e a Pedra Filosofal</h2><video controls preload="metadata" playsinline><source src="https://cdnst96.tokyvideo.com/videos/872/872358/mp4/b9e7ad5476f2630b1948d594413b98b12d7bc7a1db3b2271fa5c38bd86c85a89.mp4?secure=j3LFEhcAp2tyaS9NMWK79Q%3D%3D%2C1790336091" type="video/mp4"></video><div class="erro">Não foi possível reproduzir este vídeo incorporado. O servidor pode bloquear a reprodução fora do próprio site.</div></section>
-<section class="filme"><h2>Harry Potter e a Câmara Secreta</h2><video controls preload="metadata" playsinline><source src="https://cdnst96.tokyvideo.com/videos/872/872709/mp4/a3d757bafcdba94dc033cb58da35d35dd5253cab203d53d7cc5982f2c68021e6.mp4?secure=diU75_-MknFfRT77Gky6NA%3D%3D%2C1790338188" type="video/mp4"></video><div class="erro">Não foi possível reproduzir este vídeo incorporado. O servidor pode bloquear a reprodução fora do próprio site.</div></section>
-<section class="filme"><h2>Harry Potter e o Prisioneiro de Azkaban</h2><video controls preload="metadata" playsinline><source src="https://cdnst96.tokyvideo.com/videos/872/872882/mp4/a530578bcdef69a2cd03d6aaa57f820889635fa276f4659b08af93ad26a33363.mp4?secure=vf9P2zOLd_kP4mLjcN7zcw%3D%3D%2C1790338288" type="video/mp4"></video><div class="erro">Não foi possível reproduzir este vídeo incorporado. O servidor pode bloquear a reprodução fora do próprio site.</div></section>
-<section class="filme"><h2>Harry Potter e o Cálice de Fogo</h2><video controls preload="metadata" playsinline><source src="https://cdnst96.tokyvideo.com/videos/873/873165/mp4/19497f6ae93165ef09c30c4238157abd1966a9b9f51420354ee4bfd627862e05.mp4?secure=M9D44-Tsy98pMXBMXm8UVw%3D%3D%2C1790338370" type="video/mp4"></video><div class="erro">Não foi possível reproduzir este vídeo incorporado. O servidor pode bloquear a reprodução fora do próprio site.</div></section>
-<section class="filme"><h2>Harry Potter e a Ordem da Fênix</h2><video controls preload="metadata" playsinline><source src="https://cdnst96.tokyvideo.com/videos/874/874655/mp4/4849605068848543d1450db7500b5f6c65f99598cabbb89dccd913a61ccac497.mp4?secure=RroNEov0kUDkSXQYQEarCg%3D%3D%2C1790338451" type="video/mp4"></video><div class="erro">Não foi possível reproduzir este vídeo incorporado. O servidor pode bloquear a reprodução fora do próprio site.</div></section>
-<section class="filme"><h2>Harry Potter e o Enigma do Príncipe</h2><video controls preload="metadata" playsinline><source src="https://cdnst30.tokyvideo.com/videos/874/874957/mp4/48042dc990a8c992c99d98ada0728810e5b7f0be1ecd06dc94521be97e22ff4c.mp4?secure=2m77D2Cg4S8a_MGJYv7EdQ%3D%3D%2C1790338633" type="video/mp4"></video><div class="erro">Não foi possível reproduzir este vídeo incorporado. O servidor pode bloquear a reprodução fora do próprio site.</div></section>
-<section class="filme"><h2>Harry Potter e as Relíquias da Morte - Parte 1</h2><video controls preload="metadata" playsinline><source src="https://cdnst30.tokyvideo.com/videos/874/874964/mp4/9592ebe8435f69b653ab5041cee1813c25ac408b20ba597c8adad11463268092.mp4?secure=uNDs4Ot3qT_wQri_TF506g%3D%3D%2C1790337836" type="video/mp4"></video><div class="erro">Não foi possível reproduzir este vídeo incorporado. O servidor pode bloquear a reprodução fora do próprio site.</div></section>
-<section class="filme"><h2>Harry Potter e as Relíquias da Morte - Parte 2</h2><video controls preload="metadata" playsinline><source src="https://cdnst64.tokyvideo.com/videos/887/887330/mp4/2f48ed51255c30a3a374c395533f517f03500b8cbc6218de3915aedb2dbe9163.mp4?secure=wuHtJykz66dp8AFPN0CX9Q%3D%3D%2C1790338736" type="video/mp4"></video><div class="erro">Não foi possível reproduzir este vídeo incorporado. O servidor pode bloquear a reprodução fora do próprio site.</div></section>
-</main><script>document.querySelectorAll('video').forEach(v=>v.addEventListener('error',()=>{const e=v.parentElement.querySelector('.erro');if(e)e.style.display='block'}));</script>
-</body></html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter - Maratona</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, #29213d 0%, #111116 42%, #08080a 100%);
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            padding: 45px 20px 35px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            color: #aaa;
+            font-size: 15px;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 50px;
+        }
+
+        .filmes {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .filme {
+            background: rgba(27, 27, 34, 0.96);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .filme:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.6);
+        }
+
+        .info {
+            padding: 17px 18px 14px;
+        }
+
+        .numero {
+            display: block;
+            color: #b9a4ff;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 7px;
+        }
+
+        .titulo {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .player-area {
+            background: #000;
+            position: relative;
+        }
+
+        video {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        .fallback {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.9)),
+                #000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .fallback p {
+            color: #ccc;
+            margin: 0 0 16px;
+            font-size: 14px;
+        }
+
+        .fallback a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 18px;
+            border-radius: 8px;
+            background: #fff;
+            color: #111;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .fallback a:hover {
+            background: #ddd;
+        }
+
+        .rodape {
+            text-align: center;
+            padding: 0 20px 35px;
+            color: #666;
+            font-size: 12px;
+        }
+
+        @media (max-width: 800px) {
+            .filmes {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Harry Potter</h1>
+    <p>Maratona completa • 8 filmes</p>
+</header>
+
+<main class="container">
+    <div class="filmes">
+
+        <!-- FILME 1 -->
+        <article class="filme">
+            <div class="info">
+                <span class="numero">Filme 01</span>
+                <div class="titulo">Harry Potter e a Pedra Filosofal</div>
+            </div>
+
+            <div class="player-area">
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-video="https://cdnst96.tokyvideo.com/videos/872/872358/mp4/b9e7ad5476f2630b1948d594413b98b12d7bc7a1db3b2271fa5c38bd86c85a89.mp4?secure=j3LFEhcAp2tyaS9NMWK79Q%3D%3D%2C1790336091">
+                </video>
+
+                <div class="fallback">
+                    <p>O vídeo não pôde ser reproduzido incorporado.</p>
+                    <a target="_blank" rel="noopener">Abrir vídeo</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- FILME 2 -->
+        <article class="filme">
+            <div class="info">
+                <span class="numero">Filme 02</span>
+                <div class="titulo">Harry Potter e a Câmara Secreta</div>
+            </div>
+
+            <div class="player-area">
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-video="https://cdnst96.tokyvideo.com/videos/872/872709/mp4/a3d757bafcdba94dc033cb58da35d35dd5253cab203d53d7cc5982f2c68021e6.mp4?secure=diU75_-MknFfRT77Gky6NA%3D%3D%2C1790338188">
+                </video>
+
+                <div class="fallback">
+                    <p>O vídeo não pôde ser reproduzido incorporado.</p>
+                    <a target="_blank" rel="noopener">Abrir vídeo</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- FILME 3 -->
+        <article class="filme">
+            <div class="info">
+                <span class="numero">Filme 03</span>
+                <div class="titulo">Harry Potter e o Prisioneiro de Azkaban</div>
+            </div>
+
+            <div class="player-area">
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-video="https://cdnst96.tokyvideo.com/videos/872/872882/mp4/a530578bcdef69a2cd03d6aaa57f820889635fa276f4659b08af93ad26a33363.mp4?secure=vf9P2zOLd_kP4mLjcN7zcw%3D%3D%2C1790338288">
+                </video>
+
+                <div class="fallback">
+                    <p>O vídeo não pôde ser reproduzido incorporado.</p>
+                    <a target="_blank" rel="noopener">Abrir vídeo</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- FILME 4 -->
+        <article class="filme">
+            <div class="info">
+                <span class="numero">Filme 04</span>
+                <div class="titulo">Harry Potter e o Cálice de Fogo</div>
+            </div>
+
+            <div class="player-area">
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-video="https://cdnst96.tokyvideo.com/videos/873/873165/mp4/19497f6ae93165ef09c30c4238157abd1966a9b9f51420354ee4bfd627862e05.mp4?secure=M9D44-Tsy98pMXBMXm8UVw%3D%3D%2C1790338370">
+                </video>
+
+                <div class="fallback">
+                    <p>O vídeo não pôde ser reproduzido incorporado.</p>
+                    <a target="_blank" rel="noopener">Abrir vídeo</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- FILME 5 -->
+        <article class="filme">
+            <div class="info">
+                <span class="numero">Filme 05</span>
+                <div class="titulo">Harry Potter e a Ordem da Fênix</div>
+            </div>
+
+            <div class="player-area">
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-video="https://cdnst96.tokyvideo.com/videos/874/874655/mp4/4849605068848543d1450db7500b5f6c65f99598cabbb89dccd913a61ccac497.mp4?secure=RroNEov0kUDkSXQYQEarCg%3D%3D%2C1790338451">
+                </video>
+
+                <div class="fallback">
+                    <p>O vídeo não pôde ser reproduzido incorporado.</p>
+                    <a target="_blank" rel="noopener">Abrir vídeo</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- FILME 6 -->
+        <article class="filme">
+            <div class="info">
+                <span class="numero">Filme 06</span>
+                <div class="titulo">Harry Potter e o Enigma do Príncipe</div>
+            </div>
+
+            <div class="player-area">
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-video="https://cdnst30.tokyvideo.com/videos/874/874957/mp4/48042dc990a8c992c99d98ada0728810e5b7f0be1ecd06dc94521be97e22ff4c.mp4?secure=2m77D2Cg4S8a_MGJYv7EdQ%3D%3D%2C1790338633">
+                </video>
+
+                <div class="fallback">
+                    <p>O vídeo não pôde ser reproduzido incorporado.</p>
+                    <a target="_blank" rel="noopener">Abrir vídeo</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- FILME 7 -->
+        <article class="filme">
+            <div class="info">
+                <span class="numero">Filme 07</span>
+                <div class="titulo">Harry Potter e as Relíquias da Morte - Parte 1</div>
+            </div>
+
+            <div class="player-area">
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-video="https://cdnst30.tokyvideo.com/videos/874/874964/mp4/9592ebe8435f69b653ab5041cee1813c25ac408b20ba597c8adad11463268092.mp4?secure=uNDs4Ot3qT_wQri_TF506g%3D%3D%2C1790337836">
+                </video>
+
+                <div class="fallback">
+                    <p>O vídeo não pôde ser reproduzido incorporado.</p>
+                    <a target="_blank" rel="noopener">Abrir vídeo</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- FILME 8 -->
+        <article class="filme">
+            <div class="info">
+                <span class="numero">Filme 08</span>
+                <div class="titulo">Harry Potter e as Relíquias da Morte - Parte 2</div>
+            </div>
+
+            <div class="player-area">
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-video="https://cdnst64.tokyvideo.com/videos/887/887330/mp4/2f48ed51255c30a3a374c395533f517f03500b8cbc6218de3915aedb2dbe9163.mp4?secure=wuHtJykz66dp8AFPN0CX9Q%3D%3D%2C1790338736">
+                </video>
+
+                <div class="fallback">
+                    <p>O vídeo não pôde ser reproduzido incorporado.</p>
+                    <a target="_blank" rel="noopener">Abrir vídeo</a>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</main>
+
+<div class="rodape">
+    Harry Potter • Maratona dos 8 filmes
+</div>
+
+
+<script>
+    document.querySelectorAll("video").forEach(function(video) {
+
+        const url = video.dataset.video;
+        const fallback = video.parentElement.querySelector(".fallback");
+        const link = fallback.querySelector("a");
+
+        // Coloca o link diretamente no player
+        video.src = url;
+
+        // Link para abrir diretamente no Chrome
+        link.href = url;
+
+        // Quando o vídeo apresentar erro,
+        // mostra automaticamente o botão "Abrir vídeo"
+        video.addEventListener("error", function() {
+            fallback.style.display = "flex";
+        });
+
+        // Também tenta detectar falha de carregamento
+        video.addEventListener("stalled", function() {
+            setTimeout(function() {
+                if (video.readyState === 0) {
+                    fallback.style.display = "flex";
+                }
+            }, 3000);
+        });
+
+    });
+</script>
+
+</body>
+</html>
